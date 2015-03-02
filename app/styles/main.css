@@ -87,3 +87,48 @@ body {
     border-bottom: 0;
   }
 }
+body{
+  background-color:gray;
+}
+#container{
+  background-color:white;
+  margin-left:10%;
+  margin-right:10%;
+}
+header{
+  padding-top:15%;
+  text-align:center;
+  font-size:5em;
+}
+nav{
+  background-color:blue;
+
+}
+nav > a{
+  color:white;
+}
+section{
+  padding-left:10%;
+  padding-right:40%;
+}
+aside{
+  float:right;
+}
+aside > a{
+  padding-right:5%;
+}
+form{
+  background-color:limegreen;
+  color:white;
+}
+form > button{
+  color:black;
+  background-color:yellow;
+  align:center;
+}
+.headerquote{
+  color:green;
+}
+.bottom{
+  color:darkblue;
+}
