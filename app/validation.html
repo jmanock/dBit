@@ -1,0 +1,84 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Validation</title>
+  <link rel="stylesheet" href="validation.css">
+  <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
+</head>
+<body>
+<script>
+  $(document).ready(function(){
+    $('#signup').validate();
+  });
+</script>
+  <div class='wrapper'>
+    <header>
+      Javascript <span class='amp'>&amp;</span>
+      jQuery: The &nbsp; Missing&nbsp;Manual
+    </header>
+    <div class='content'>
+      <div class='main'>
+        <h1>Signup</h1>
+        <form action="process.html" method='post' name='signup' id='signup'>
+          <div>
+            <label for="name" class='label'>Name</label>
+            <input type="text" name='name' id='name' class='required' title='Please type your name.'>
+          </div>
+          <div>
+            <label for="email" class='label'>E-Mail Address</label>
+            <input type="text" name='email' id='email'>
+          </div>
+          <div>
+            <label for="password" class='label'>Password</label>
+            <input type="password" name='password' id='password'>
+          </div>
+          <div>
+            <label for="confirm_password" class='label'>Confirm Password</label>
+            <input type="password" id='confirm_password' name='confirm_password'>
+          </div>
+          <div><span class='label'>Hobbies</span>
+            <input type="checkbox" name='hobby' id='heliskiing' value='heliskiing'>
+            <label for="heliskiing">Heli-skiing</label>
+            <input type="checkbox" id='pickle' value='pickle' name='hobby'>
+            <label for="pickle">Pickle eating</label>
+            <input type="checkbox" name='hobby' id='walnut' value='walnut'>
+            <label for="walnut">Making walnut butter</label>
+          </div>
+          <div>
+            <label for="dob" class='label'>Date of Birth</label>
+            <input type="text" name='dob' id='dob' class='date' title='Please Type your date of birth using this format: 01/19/2000'>
+          </div>
+          <div>
+            <label for="planet" class='label'>Planet of Birth</label>
+            <select name="planet" id="planet">
+              <option value="">Please select one</option>
+              <option value="earth">Earth</option>
+              <option value="mars">Mars</option>
+              <option value="alpha centauri">Alpha Centauri</option>
+              <option value="forget about it">You'vs never heard of it</option>
+            </select>
+          </div>
+          <div>
+            <label for="comments" class='label'>Comments</label>
+            <textarea name="comments" id="comments" cols="15" rows="5"></textarea>
+          </div>
+          <div class='labelBlock'>Would you like to reveive annoying e-mail from us?</div>
+          <div class='indent'>
+            <input type="radio" name='spam' id='yes' value='yes'>
+            <label for="yes">Yes</label>
+            <input type="radio" name='spam' id='definitely' value='definitely'>
+            <label for="definitely">Definitely</label>
+            <input type="radio" name='spam' id='choice' value='choice'>
+            <label for="choice">Do I have a choice?</label>
+          </div>
+          <div>
+            <input type="submit" name='submit' id='submit' value='Submit'>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
