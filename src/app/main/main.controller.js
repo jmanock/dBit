@@ -3,14 +3,15 @@
 
   angular
     .module('dBit')
-    .controller('MainController', MainController)
-    .controller('loginController', loginController);
+    .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  MainController.$inject = ['$state'];
+  function MainController($state) {
     var vm = this;
-  }
-  function loginController(){
+    vm.navigatTo = function($state){
+      $state.go(state);
+    };
 
   }
 })();
