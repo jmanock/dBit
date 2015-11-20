@@ -38,7 +38,7 @@
         "module": null
       },
       "bootstrapComponents": {
-        "key": "none",
+        "key": "official",
         "module": null
       },
       "cssPreprocessor": {

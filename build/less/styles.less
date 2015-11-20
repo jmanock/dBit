@@ -1,0 +1,87 @@
+@import './reset';
+@import (reference) './variables';
+@import (reference) './mixins';
+
+html{
+  font-size:10px;
+}
+
+body{
+  font:normal 16px/1.5 Helvetica, Arial, sans-serif;
+  font-size:1.6rem;
+  text-transform:uppercase;
+  text-align:center;
+  background:@bodyBackground;
+}
+
+table{
+  text-shadow:1px 1px 0px @white;
+  border-collapse:collapse;
+  border-spacing:0;
+  background:@tableBackground;
+  width:100%;
+  .box-shadow(0 1px 2px @shadowColor);
+}
+
+td{
+  padding:1% 2$;
+  border-top:1px solid @white;
+  border-bottom:1px solid @borderColor;
+  border-left:1px solid @borderColor;
+  min-width:20px;
+  .gradient(@cellGradientBegin, @cellGradientEnd);
+  &:first-child{
+    border-left:0;
+  }
+}
+
+tr{
+  &:first-child .header{
+    border-top:1px solid @borderColor;
+  }
+  &:last-child td{
+    border-bottom:0;
+  }
+  &:hover .header{
+    background:@headerBackground;
+  }
+}
+
+h1{
+  color:@headingColor;
+  font-size:2.4rem;
+}
+
+.subtitle{
+  color:@disabled;
+  margin-bottom:1.5rem;
+  text-transform:none;
+  font-size:1.2rem;
+}
+
+.header{
+  border-top:1px solid @headerBorderTop;
+  border-bottom:1px solid @headerBorderBottom;
+  cursor:pointer;
+  .gradinet(@headerGradientBegin, @headerGradientEnd);
+  .transition(background-color 200ms ease-in-out);
+}
+
+.container{
+  max-width:960px;
+  margin:2.5rem auto;
+  width:95%;
+}
+
+.name{
+  text-align:left;
+}
+
+.under{
+  color:@red;
+}
+.cut{
+  &, .under{
+    color:@disabled;
+  }
+}
