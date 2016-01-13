@@ -1,0 +1,16 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$fa-font-path: "../bower_components/font-awesome/fonts";
+
+@import '../bower_components/font-awesome/scss/font-awesome';
+@import 'shared/_bootstrap.scss';
+@import 'shared/custom-styles.scss';
+
+
+// Component styles are injected through grunt
+// injector
+@import 'main/main.scss';
+@import 'products/products.scss';
+@import '../components/footer/footer.scss';
+@import '../components/modal/modal.scss';
+@import '../components/sidebar/sidebar.scss';
+// endinjector

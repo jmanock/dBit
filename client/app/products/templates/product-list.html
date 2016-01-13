@@ -1,0 +1,30 @@
+<navbar></navbar>
+
+<div class="container">
+    <div class="row">
+            <h1 class="page-header">Products
+                <small>{{query}}</small>
+            </h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3" ng-include="'components/sidebar/sidebar.html'"></div>
+        <div class="col-md-3" ng-show="products.length < 1"> No products to show.</div>
+        <div class="col-xs-6 col-md-3" ng-repeat="product in products">
+            <div class="thumbnail product-wrapper">
+                <div class="product-meta">
+                    <a ui-sref="viewProduct({id: product._id})">
+                        <img class="product-img" src="{{product.imageUrl}}" alt="{{product.title}}">
+                        <h3 class="product-title">{{product.title}}</h3>
+                    </a>
+                    <p>{{product.description}}</p>
+                </div>
+                <div class="product-footer">
+                        <div class="product-price text-right">{{product.price | currency }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer></footer>

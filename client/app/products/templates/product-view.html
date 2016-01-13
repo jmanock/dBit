@@ -1,0 +1,25 @@
+<navbar></navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3 col-md-3 thumbnail product-wrapper">
+            <div class="product-meta">
+                <a ui-sref="viewProduct({id: product._id})">
+                    <img class="product-img" src="{{product.imageUrl}}" alt="{{product.title}}">
+                    <h3 class="product-title">{{product.title}}</h3>
+                </a>
+                <p>{{product.description}}</p>
+            </div>
+
+            <div class="product-footer">
+                <div class="product-price text-right">{{product.price | currency }}</div>
+                <div>
+                    <a ui-sref="editProduct({id: product._id})" class="btn btn-default" role="button">EDIT</a>
+                    <a class="btn btn-default" ng-click="deleteProduct()">DELETE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer></footer>

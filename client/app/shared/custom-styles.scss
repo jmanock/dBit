@@ -1,0 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+// Catch all to avoid having to put the img-responsive class on every
+// single image and other elements
+
+img, embed,
+object, video {
+  max-width: 100%;
+}
+
+//== Colors
+//
+$brand-accent: #E85C41;
