@@ -91,16 +91,15 @@
       "bootstrap": true,
       "uibootstrap": true,
       "socketio": true,
-      "auth": true,
       "models": true,
       "mongooseModels": true,
       "mongoose": true,
       "grunt": true,
       "gulp": false,
-      "jasmine": true,
-      "mocha": false,
+      "mocha": true,
+      "jasmine": false,
       "should": false,
-      "expect": false
+      "expect": true
     }
   },
   "generator-ng-component": {
@@ -112,7 +111,8 @@
     "moduleName": "",
     "filters": [
       "uirouter",
-      "jasmine",
+      "mocha",
+      "expect",
       "uirouter"
     ],
     "extensions": [

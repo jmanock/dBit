@@ -1,32 +1,20 @@
-<div class="navbar navbar-default" ng-controller="NavbarCtrl">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="/" class="navbar-brand">Demo App</a>
-        </div>
-        <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-            <ul class="nav navbar-nav">
-                <li ng-repeat="item in menu" ui-sref-active="active">
-                    <a ui-sref="{{item.state}}">{{item.title}}</a>
-                </li>
-            </ul>
-
-            <!-- Search bar -->
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="fa fa-search"></span></span>
-                        <!-- ng-focus redirects to the products page as soon as the user focuses on the search bar. When the user starts typing the product name, the matching word shows up. -->
-                        <input id="searchBox" type="text" class="form-control input-large" placeholder="Search" ng-model="searchTerm" ng-change="search()" ng-focus="redirect()">
-                    </div>
-                </div>
-            </form>
-            <p class="navbar-text navbar-right">View project on <a href="https://github.com/fab9/chewyshop">Github</a></p>
-        </div>
+<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">SomethingKnew</a>
     </div>
+    <div collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li ng-repeat="item in nav.menu" ui-sref-active="active">
+            <a ui-sref="{{item.state}}">{{item.title}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
