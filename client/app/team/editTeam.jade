@@ -1,0 +1,69 @@
+.well(data-ng-controller="editTeamCtrl")
+
+    form(role='form', name='TeamForm')
+        legend set up your team for the
+            span.text-primary  {{tournament.name}}
+
+        fieldset
+            .form-group
+                label.control-label(for='teamName') Team Name
+                    small.text-muted  (required)
+                input.form-control(type='text', name='teamName', required='required', data-ng-model='team.teamName')
+
+            .form-group
+                label.control-label(for='ownerName') Owner Name
+                    small.text-muted  (required)
+                input.form-control(type='text', name='ownerName', required='required', data-ng-model='team.ownerName')
+
+
+        h5.text-center.text-danger(ng-show="tournament.ballstrikersStatus == 'Locked' && !team.newTeam")
+            span.glyphicon.glyphicon-warning-sign
+            |  Players cannot be changed while a tournament is in progress
+
+        fieldset(ng-disabled="tournament.ballstrikersStatus == 'Locked' && !team.newTeam")
+            .form-group
+                label.control-label(for='ownerName') Player 1
+                    small.text-muted  (required)
+                select.form-control(required, ng-model="team.player1._id", ng-options="p._id as (p.name.last + ', '+ p.name.first) for p in field | orderBy:'name.last'")
+
+            .form-group
+                label.control-label(for='ownerName') Player 2
+                    small.text-muted  (required)
+                select.form-control(required, ng-model="team.player2._id", ng-options="p._id as (p.name.last + ', '+ p.name.first) for p in field | orderBy:'name.last'")
+
+            .form-group
+                label.control-label(for='ownerName') Player 3
+                    small.text-muted  (required)
+                select(class="form-control", ng-model="team.player3._id", ng-options="p._id as (p.name.last + ', '+ p.name.first) for p in field | orderBy:'name.last'")
+
+            .form-group
+                label.control-label(for='ownerName') Player 4
+                    small.text-muted  (required)
+                select.form-control(required, ng-model="team.player4._id", ng-options="p._id as (p.name.last + ', '+ p.name.first) for p in field | orderBy:'name.last'")
+
+
+        //buttons
+        div.well-sm.text-center
+            ul.list-inline
+                li
+                    button.btn.btn-success(type="submit", ng-click="saveTeam(team)", ng-disabled="TeamForm.$invalid || TeamForm.$pristine" )
+                        span.glyphicon.glyphicon-ok
+                        span(ng-show="TeamForm.$dirty")  Save changes
+                        span(ng-show="TeamForm.$pristine")  All changes saved
+                li
+                    button.btn.btn-danger(data-ng-click="cancel()", ng-disabled="TeamForm.$pristine")
+                        span.glyphicon.glyphicon-repeat
+                        |  Undo changes
+
+                li
+                    a.btn.btn-primary(href="/myteam", ng-disabled="TeamForm.$dirty")
+                        span.glyphicon.glyphicon-arrow-right
+                        |  View my team
+
+            //error
+            alert(type="danger", ng-if="teamError") {{teamError}}
+
+
+
+
+div(ng-include='\'components/league/editLeagues\'')

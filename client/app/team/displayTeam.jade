@@ -1,0 +1,91 @@
+div.well(data-ng-controller="displayTeamCtrl")
+    table.table.table-condensed
+        thead
+            th(colspan=2)
+                h3 {{team.teamName}}
+                    small  {{team.ownerName}}
+            th.text-muted.hidden-xs(data-ng-repeat="round in rounds")
+                | {{'rnd ' + round.number}}
+            th.text-center total
+
+        tbody
+            tr
+                td
+                    div.playerList
+                        a(ng-href="{{'/player/' + team.player1.id}}")
+                            img.playerImage(ng-src="https://res.cloudinary.com/pga-tour/image/upload/t_headshots_player_s/headshots_{{team.player1.id}}.png")
+                td
+                    h4 {{team.player1.name.first + ' ' + team.player1.name.last}}
+                    a(ng-href="{{'/player/' + team.player1.id}}")
+                        span.glyphicon.glyphicon-list-alt
+                        |  scorecard
+                td.hidden-xs(data-ng-repeat="round in team.player1.rounds")
+                    .viewteam_rowItem {{round.modStablefordTotal}}
+                td
+                    .viewteam_rowItem {{team.player1.modstable}}
+
+            tr
+                td
+                    div.playerList
+                        a(ng-href="{{'/player/' + team.player2.id}}")
+                            img.playerImage(ng-src="https://res.cloudinary.com/pga-tour/image/upload/t_headshots_player_s/headshots_{{team.player2.id}}.png")
+
+
+                td
+                    h4 {{team.player2.name.first + ' ' + team.player2.name.last}}
+                    a(ng-href="{{'/player/' + team.player2.id}}")
+                        span.glyphicon.glyphicon-list-alt
+                        |  scorecard
+
+
+                td.hidden-xs(data-ng-repeat="round in team.player2.rounds")
+                    .viewteam_rowItem {{round.modStablefordTotal}}
+                td
+                    .viewteam_rowItem {{team.player2.modstable}}
+
+            tr
+                td
+                    div.playerList
+                        a(ng-href="{{'/player/' + team.player3.id}}")
+                            img.playerImage(ng-src="https://res.cloudinary.com/pga-tour/image/upload/t_headshots_player_s/headshots_{{team.player3.id}}.png")
+
+
+                td
+                    h4 {{team.player3.name.first + ' ' + team.player3.name.last}}
+                    a(ng-href="{{'/player/' + team.player3.id}}")
+                        span.glyphicon.glyphicon-list-alt
+                        |  scorecard
+
+
+                td.hidden-xs(data-ng-repeat="round in team.player3.rounds")
+                    .viewteam_rowItem {{round.modStablefordTotal}}
+                td
+                    .viewteam_rowItem {{team.player3.modstable}}
+
+            tr
+                td
+                    div.playerList
+                        a(ng-href="{{'/player/' + team.player4.id}}")
+                            img.playerImage(ng-src="https://res.cloudinary.com/pga-tour/image/upload/t_headshots_player_s/headshots_{{team.player4.id}}.png")
+                td
+                    h4 {{team.player4.name.first + ' ' + team.player4.name.last}}
+                    a(ng-href="{{'/player/' + team.player4.id}}")
+                        span.glyphicon.glyphicon-list-alt
+                        |  scorecard
+                td.hidden-xs(data-ng-repeat="round in team.player4.rounds")
+                    .viewteam_rowItem {{round.modStablefordTotal}}
+                td
+                    .viewteam_rowItem {{team.player4.modstable}}
+
+        tfoot
+            tr
+                td
+                td.hidden-xs(data-ng-repeat="round in rounds")
+                td
+                    h4.pull-right total:
+                td.text-center
+                    h4 {{team.modstable}}
+
+
+        //error
+        alert(type="danger", ng-show="teamError") {{teamError}}

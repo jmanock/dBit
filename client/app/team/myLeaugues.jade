@@ -1,0 +1,33 @@
+div(ng-controller="myLeaguesCtrl")
+    div(ng-show="displayNoLeaguesMessage")
+        .well
+            legend My leagues
+            p You're not currently a member of any leagues. Click 'Edit Leagues' to join leagues.
+            a.btn.btn-primary(href="/editleagues") Edit Leagues
+
+    div.well(ng-repeat="league in leagues")
+        .row
+            .col-sm-8
+                h3 {{league.leagueName}}
+                form
+                    .input-group
+                        input.form-control(type="text", placeholder="enter a message here...", ng-model="chatMessage")
+                        span.input-group-btn
+                            button.btn.btn-success(ng-click="addChat(chatMessage, league._id, currentUser.teamId)") send
+                .league_chatbox
+                    div.league_chatbox_item(ng-repeat="msg in league.chat | orderBy:'modified':true")
+                        span.league_chatbox_item_title
+                            span.text-primary {{msg.name}}
+                            span.text-muted  {{msg.modified| date:'EEE, h:mm a'}}
+                        | {{msg.message}}
+            .col-sm-4
+                h3 Leaderboard
+                    small updated: {{league.modified| date:'EEE, h:mm a'}}
+                .league_leaderbox
+                    a(ng-repeat="team in league.leaderboard | orderBy:'score':true", ng-href="/team/{{team.teamId}}")
+                        div.league_leaderbox_item(ng-class="{active: team.teamId == currentUser.teamId}")
+                            span.h4  {{$index + 1}}.
+                            span  {{team.teamName}}
+                                small.text-muted  {{team.ownerName}}
+                            span.pull-right {{team.score || '0'}}
+            .clearfix
