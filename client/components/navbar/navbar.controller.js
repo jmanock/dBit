@@ -1,26 +1,18 @@
 'use strict';
 
-angular.module('chewyshopApp')
-.controller('NavbarCtrl', function($scope, $rootScope, $state, $window, $timeout){
-  $scope.menu =[{
-    'title':'Home',
-    'state':'main'
-  },{
-    'title':'Products',
-    'state':'products'
+class NavbarController {
+  //start-non-standard
+  menu = [{
+    'title': 'Home',
+    'state': 'main'
   }];
 
-  $scope.search = function(){
-    $rootScope.$broadcast('search:term', $scope.searchTerm);
-  };
+  isCollapsed = true;
+  //end-non-standard
 
-  $scope.redirect = function(){
-    $state.go('products');
-    $timeout(function(){
-      var searchBox = $window.document.getElementById('searchBox');
-      if(searchBox){
-        searchBox.focus();
-      }
-    });
-  };
-});
+  constructor() {
+    }
+}
+
+angular.module('chewyshopApp')
+  .controller('NavbarController', NavbarController);

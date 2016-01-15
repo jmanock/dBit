@@ -85,7 +85,7 @@
     "filters": {
       "js": true,
       "babel": true,
-      "html": true,
+      "jade": true,
       "sass": true,
       "uirouter": true,
       "bootstrap": true,
@@ -118,7 +118,7 @@
     "extensions": [
       "babel",
       "js",
-      "html",
+      "jade",
       "scss"
     ],
     "directiveSimpleTemplates": "",
