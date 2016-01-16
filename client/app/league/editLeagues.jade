@@ -1,0 +1,49 @@
+div.row(data-ng-controller="editLeaguesCtrl")
+
+    div.col-sm-12
+        alert(type="danger", ng-show="leagueError.status", close="leagueError = {}")
+            h4 status: {{leagueError.status}}
+            p {{leagueError.name}}: {{leagueError.message}}
+
+    div.col-sm-12
+        .well
+            legend Manage my leagues
+            //p(type="success") This is a list of all of the leagues on Ballstrikers. You can join multiple leagues. Click the green button to join a league. Click the red button to leave a league.
+            div
+                table.table.table-responsive()
+                    thead.text-muted
+                        th League Name
+                        th.hidden-xs Am I a member?
+                        th Leave / Join League
+                    tbody
+                        tr(data-ng-repeat="league in leagues")
+                            td
+                                h5 {{league.leagueName}}
+                            td.hidden-xs
+                                h5
+                                    span.glyphicon(ng-class="{'glyphicon-ok': league.active, 'glyphicon-remove': !league.active}")
+                            td
+                                button.btn.btn-danger.h5(ng-show="league.active",ng-click="leaveLeague(league._id, currentUser.teamId)")
+                                    span.glyphicon.glyphicon-new-window
+                                    |  Leave
+
+                                button.btn.btn-success.h5(ng-hide="league.active",ng-click="joinLeague(league._id, currentUser.teamId)")
+                                    span.glyphicon.glyphicon-check
+                                    |  Join
+
+            div.well-sm.text-center
+                a.btn.btn-primary(href="/leagues")
+                    span.glyphicon.glyphicon-arrow-right
+                    |  View my leagues
+
+
+    div.col-sm-12
+        .well
+            form(role='form', name='LeagueForm', data-ng-submit='createLeague(newLeague)')
+                legend Create a new league
+                .form-group
+                    label.control-label(for='name') League Name
+                    input.form-control(type='text', name='name', required, data-ng-model='newLeague.leagueName')
+
+                button.btn.btn-success.pull-right(type='submit') Create
+                .clearfix
