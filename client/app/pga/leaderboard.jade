@@ -1,0 +1,25 @@
+div(ng-controller="LeaderboardCtrl")
+
+
+    div(ng-hide="dataLoaded")
+        .wrapperloading
+            .loading_up
+            .loading_down
+
+
+    div.well(ng-show="dataLoaded")
+        h2 {{info.name}}
+            small  {{info.date}}
+
+        div.tableOverflow.leaderboard
+            table.table
+                thead.text-muted
+                    th name
+                    th(ng-repeat="item in courses[0].h") {{$index + 1}}
+                    th tot
+                tbody
+                    tr(data-ng-repeat='player in players | limitTo:49')
+                        td.text-muted
+                            a(ng-href="/player/{{player.id}}") {{player.ln +', ' + player.fn}}
+                        td(ng-repeat="hole in player.h.h") {{hole.sc}}
+                        td {{player.tp}}
