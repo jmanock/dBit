@@ -1,0 +1,160 @@
+div(data-ng-controller="tournamentAdminCtrl")
+    .well
+
+        form.form-horizontal(role='form', name='TournamentForm')
+            legend edit tournament
+
+            .form-group
+                .col-sm-12
+
+                    .tableOverflow
+                        table.table
+                            thead
+                                tr
+                                    th Name
+                                    th Status
+                                    th Round
+                                    th Last Update
+                                    th status
+
+                            tbody
+                                tr
+                                    td {{tournament.name}}
+                                    td {{tournament.pgaStatus}}
+                                    td {{tournament.currentRound}} of {{tournament.totalRounds}}
+                                    td {{tournament.date}}
+                                    td
+                                        select(class="form-control", ng-model="tournament.ballstrikersStatus")
+                                            option Editable
+                                            option Locked
+
+                    div
+                        //buttons
+                        ul.list-inline(collapse='!TournamentForm.$dirty')
+                            li
+                                button.btn.btn-success(data-ng-click="updateTournament(tournament._id, tournament)") Save Changes
+                            li
+                                button.btn.btn-danger(data-ng-click="cancel()") Cancel
+
+                            h5.text-success(data-ng-show='updated && TournamentForm.$pristine') All changes saved &#x2713;
+
+                        alert(type="danger", ng-show="tournamentError") {{tournamentError}}
+
+
+        legend run functions
+
+        .row
+            .col-sm-4
+                .admin_buttonbox
+                    h3 Run setup
+                    p will delete all players*
+                    button.btn.btn-danger(data-ng-click="runSetup()") Run Setup
+
+                    alert(type="info", ng-show="setupResponse") {{setupResponse}}
+                    alert(type="danger", ng-show="setupError") {{setupError}}
+
+            .col-sm-4
+                .admin_buttonbox
+                    h3 Refresh setup
+                    p update setup file only
+                    button.btn.btn-primary(data-ng-click="runRefreshSetup()") Refresh Setup
+
+                    alert(type="info", ng-show="refreshSetupResponse") {{refreshSetupResponse}}
+                    alert(type="danger", ng-show="RefreshSetupError") {{RefreshSetupError}}
+
+            .col-sm-4
+                .admin_buttonbox
+                    h3 Calc player scores
+                    p recalc player scores
+                    button.btn.btn-primary(data-ng-click="calcPlayerScores()") Calc player scores
+
+                    alert(type="info", ng-show="playerResponse") {{playerResponse}}
+                    alert(type="danger", ng-show="playerError") {{playerError}}
+        .row
+            .col-sm-4
+                .admin_buttonbox
+                    h3 Calc team scores
+                    p recalc team scores
+                    button.btn.btn-primary(data-ng-click="calcTeamScores()") Calc team scores
+
+                    alert(type="info", ng-show="teamResponse") {{teamResponse}}
+                    alert(type="danger", ng-show="teamError.status", close="teamError = {}")
+                        h4 status: {{teamError.status}}
+                        p {{teamError.name}}: {{teamError.message}}
+
+            .col-sm-4
+                .admin_buttonbox
+                    h3 Calc league scores
+                    p recalc league scores
+                    button.btn.btn-primary(data-ng-click="calcLeagues()") Calc league scores
+
+                    alert(type="info", ng-show="leagueResponse") {{leagueResponse}}
+                    alert(type="danger", ng-show="leagueError.status", close="leagueError = {}")
+                        h4 status: {{leagueError.status}}
+                        p {{leagueError.name}}: {{leagueError.message}}
+
+    .well
+        legend Users ({{users.length}})
+
+        alert(type="danger", ng-if="userError") {{teamError.name}}: {{teamError.message}}
+
+        .tableOverflow
+            table.table
+                thead
+                    tr
+                        th Name
+                        th Email
+                        th Role
+                        th Delete
+
+                tbody
+                    tr(ng-repeat="user in users")
+                        td {{user.name}}
+                        td {{user.email}}
+                        td {{user.role}}
+                        td
+                            button.btn.btn-sm.btn-danger(ng-click="deleteUser(user.userId)", ng-disabled="user.role == 'admin'") Delete
+
+
+    //.well
+        form.form-horizontal
+            legend edit player
+            .form-group
+                .col-sm-2
+                    label.control-label Player
+                .col-sm-8
+                    select(class="form-control", ng-model="editPlayerId", ng-options="p._id as (p.name.last + ', '+ p.name.first) for p in players")
+                    option Editable
+                    option Locked
+                .col-sm-2
+                    a.btn.btn-primary(ng-href="admin/player/{{editPlayerId}}", ng-disabled="!editPlayerId")
+                        span.glyphicon.glyphicon-edit
+                        | edit player
+    //.well
+        form.form-horizontal
+            legend edit team
+            .form-group
+                .col-sm-2
+                    label.control-label Team
+                .col-sm-8
+                    select(class="form-control", ng-model="editTeamId", ng-options="p.id as (p.name.last + ', '+ p.name.first) for p in tournament.field")
+                        option Editable
+                        option Locked
+                .col-sm-2
+                    a.btn.btn-primary(ng-href="admin/player/{{editTeamId}}", ng-disabled="!editTeamId")
+                        span.glyphicon.glyphicon-edit
+                        | edit team
+    //.well
+        form.form-horizontal
+            legend edit league
+            .form-group
+                .col-sm-2
+                    label.control-label Team
+                .col-sm-8
+                    select(class="form-control", ng-model="editTeamId", ng-options="p.id as (p.name.last + ', '+ p.name.first) for p in tournament.field")
+                        option Editable
+                        option Locked
+                .col-sm-2
+                    a.btn.btn-primary(ng-href="admin/player/{{editTeamId}}", ng-disabled="!editTeamId")
+                        span.glyphicon.glyphicon-edit
+                        | edit league
